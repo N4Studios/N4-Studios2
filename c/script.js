@@ -70,12 +70,12 @@ async function copyText() {
 // ==========================================
 
 copyButton.addEventListener("click", copyText);
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Meta") {
     history.back();
-    await delay(2000);
-    window.close();
+    setTimeout(() => {
+        window.close();
+    }, 2000);
   }
 });
 
