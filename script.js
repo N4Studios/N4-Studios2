@@ -66,7 +66,7 @@ const blogPosts = [
     {
         type: "Websites",
         title: "Auto Clipboard", 
-        link: `${getPreDir()}c/index.html`, 
+        link: `${getPreDir()}c/`, 
         docs: ``,
         date: "November 10, 2026",
         desc: "Allows a user to open the page and have it automatically copy what the user needs (Given the key). Key is provided in this format (<span class='underline'>/?key</span>) of the URL. Each Key and value is submitted through a google form. (Need the form link? Contact <a class='content-link' href='../../About'>Luke Nielsen</a>)", 
@@ -93,8 +93,8 @@ const blogPosts = [
     {
         type: "Websites",
         title: "Computer Simulator", 
-        link: `${getPreDir()}Projects/ComputerSimulator/index.html`, 
-        docs: `${getPreDir()}Docs/ComputerSimulator/index.html`,
+        link: `${getPreDir()}Projects/ComputerSimulator/`, 
+        docs: `${getPreDir()}Docs/ComputerSimulator/`,
         date: "November 06, 2023.",
         desc: "A Computer Simulator created using HTML, Javascript, and CSS. <a href='https://github.com/Hibyehello' class='content-link'>Josh C.</a> helped create it as well.", 
         imageUrl: "https://n4-studios.com/Assets/blog/ComputerSimulatorThumbnail.png"
@@ -112,7 +112,7 @@ const blogPosts = [
         type: "Blog",
         disabled: true,
         title: "Hawaii Trip", 
-        link: `${getPreDir()}Docs/HawaiiTrip/index.html`, 
+        link: `${getPreDir()}Docs/HawaiiTrip/`, 
         docs: ``,
         date: "November 29, 2023",
         desc: ``, 
@@ -206,7 +206,7 @@ const blogPosts = [
         type: "Other Projects",
         disabled: true,
         title: "Drive Data Recovery", 
-        link: `${getPreDir()}Docs/DriveRecovery/index.html`, 
+        link: `${getPreDir()}Docs/DriveRecovery/`, 
         docs: ``,
         date: "August 08, 2023",
         desc: `Recovering data from currupted Windows Vista PC.`, 
@@ -216,7 +216,7 @@ const blogPosts = [
         type: "Other Projects",
         disabled: true,
         title: "Ubuntu Server", 
-        link: `${getPreDir()}Docs/UbuntuServer/index.html`, 
+        link: `${getPreDir()}Docs/UbuntuServer/`, 
         docs: ``,
         date: "July 28, 2023",
         desc: `Using old PC to serve as a Home Media Server.`, 
@@ -243,7 +243,7 @@ const blogPosts = [
     {
         type: "Other Projects",
         title: "Server Management", 
-        link: `${getPreDir()}Docs/ServerManagement1/index.html`, 
+        link: `${getPreDir()}Docs/ServerManagement1/`, 
         docs: ``,
         date: "January 01, 2023 - May 15, 2023",
         desc: `Setup 3 servers (1 Ubuntu, 2 Windows Server) for Weber Innovation Center.`, 
@@ -261,7 +261,7 @@ const blogPosts = [
     {
         type: "Games",
         title: "Beginners Start", 
-        link: `${getPreDir()}Games/BeginnersStart/index.html`, 
+        link: `${getPreDir()}Games/BeginnersStart/`, 
         docs: ``,
         date: "August 09, 2022",
         desc: `Followed <a class='content-link' href='https://www.youtube.com/@PlugWorld/'>PlugWorld\'s</a> Youtube <a class='content-link' href='https://www.youtube.com/playlist?list=PL6bQeQE-ybqAYoaWz_ZEE2X4wX6PhwCWR'>Tutorial</a> to create a 2d wave shooter game using Godot Engine.`, 
@@ -270,7 +270,7 @@ const blogPosts = [
     {
         type: "Games",
         title: "Color Land 5", 
-        link: `${getPreDir()}Games/ColorLand5/index.html`, 
+        link: `${getPreDir()}Games/ColorLand5/`, 
         docs: ``,
         date: "May 31, 2022",
         desc: `Created Color Land 5 as a new version of Color Land 3. This game was created using Godot Engine 3.4.`, 
@@ -348,19 +348,19 @@ function populateBlogRows() {
 
 function populateSideMenu(preDir) {
     let sideMenu = $("#sideMenu");
-    sideMenu.append(`<li><a href="${preDir}index.html">Home</a></li>`);
-    sideMenu.append(`<li><a href="${preDir}Resume/index.html">Resume</a></li>`);
-    sideMenu.append(`<li><a href="${preDir}Documents/index.html">Documents</a></li>`);
-    sideMenu.append(`<li><a href="${preDir}About/index.html">About</a></li>`);
+    sideMenu.append(`<li><a href="${preDir}">Home</a></li>`);
+    sideMenu.append(`<li><a href="${preDir}Resume/">Resume</a></li>`);
+    sideMenu.append(`<li><a href="${preDir}Documents/">Documents</a></li>`);
+    sideMenu.append(`<li><a href="${preDir}About/">About</a></li>`);
 }
 
 function populateSubNav(preDir) {
     let subNav = $("#subNav");
-    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Websites/index.html'">WEBSITES</button>`)
-    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Games/index.html'">GAMES</button>`)
-    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Software/index.html'">SOFTWARE</button>`)
-    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Media/index.html'">VIDEOS & PHOTOS</button>`)
-    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Other_Projects/index.html'">OTHER PROJECTS</button>`)
+    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Websites/'">WEBSITES</button>`)
+    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Games/'">GAMES</button>`)
+    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Software/'">SOFTWARE</button>`)
+    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Media/'">VIDEOS & PHOTOS</button>`)
+    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Other_Projects/'">OTHER PROJECTS</button>`)
 }
 
 // BLOG ROWS
