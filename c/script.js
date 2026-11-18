@@ -75,7 +75,7 @@ document.addEventListener("keydown", (event) => {
     history.back();
     setTimeout(() => {
         window.close();
-    }, 2000);
+    }, 500);
   }
 });
 
