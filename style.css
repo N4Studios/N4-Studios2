@@ -1,0 +1,269 @@
+body {
+    margin: 0;
+    background: black;
+    transition: margin 1.4s ease-in, width 1.4s ease-in;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+#head {
+    position: fixed;
+    width: 100%;
+    background-color: black;
+        /* Modern CSS Masking */
+        -webkit-mask-image: radial-gradient(circle, black 85%, transparent 99%);
+        mask-image: radial-gradient(circle, black 85%, transparent 99%);
+    transition: margin 0.75s ease-in-out, width 0.75s ease-in-out;
+}
+
+#content {
+    width: calc(100% - 64px);
+    margin-top: 250px;
+    padding: 30px;
+    position: absolute;
+    background-color: black;
+    border: 2px solid #37c8d3;
+    border-radius: 25px;
+    transition: margin 0.75s ease-in-out, width 0.75s ease-in-out;
+    margin: 0px;
+    background-image: url('waves.svg');
+    background-size: cover;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+.project-links {
+    display: flex;
+    flex-direction: row;
+}
+
+.blog-links {
+    display: flex;
+    flex-direction: row;
+}
+
+.openLink {
+    content: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='1em' height='1em' fill='none' stroke='white' stroke-width='1' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true' focusable='false'><path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'></path><polyline points='15 3 21 3 21 9'></polyline><line x1='10' y1='14' x2='21' y2='3'></line></svg>");
+    /* display: block; */
+    width: 2.25em;
+    height: 2.25em;
+    /* margin-top: -0.25em; */
+}
+
+.openDocs {
+    content: url("data:image/svg+xml;utf8, <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='1em' height='1em' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' aria-hidden='true' focusable='false'><path d='M37 45H11a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3h19l10 10v29a3 3 0 0 1-3 3z'/><path d='M30 3v10h10'/><path d='M18 23h12M18 27h12M18 31h12'/></svg>");
+    /* position: absolute; */
+    /* display: inline; */
+    /* align-items: end; */
+    width: 2.25em;
+    height: 2.25em;
+    /* margin-top: -2.25em; */
+    /* border: 1px solid red */
+}
+
+#box {
+    /* width: calc(100vw - 60px); */
+    text-align: center;
+    /* background: black; */
+    color: white;
+    margin-right: 0px;
+}
+
+.subNav {
+    width: calc(100% - 8px);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    height: 80px;
+}
+
+.subNavBtn {
+    width: 225px;
+    height: 60px;
+    cursor: pointer;
+    background: #131d36;
+    border: 2px solid #37c8d3;
+    border-radius: 5px;
+    color: white;
+}
+
+.subNavBtn:hover {
+    border: 2px solid white;
+    background: #14275a;
+}
+
+
+#hamburgerContainer {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
+    z-index: 3;
+    /* Apply the blur effect */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px); /* For Safari support */
+
+    /* The magic: background fades out to transparent in a circle */
+        -webkit-mask-image: radial-gradient(
+            circle,
+            black 40%,
+            transparent 80%
+        );
+        mask-image: radial-gradient(
+            circle,
+            black 40%,
+            transparent 80%
+        );
+
+}
+
+#hamburgerBtn {
+    cursor: auto;
+    position: relative;
+    background: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+#hamburgerSVG {
+    width: 75%;
+    height: 75%;
+    cursor: pointer;
+    position: relative;
+}
+
+#sideMenu {
+    position: fixed;
+    width: 20%;
+    height: 100vh;
+    z-index: 2;
+    border-top: 2px solid #37c8d3;
+    border-right: 2px solid #37c8d3;
+    border-radius: 0 15px 0 0;
+
+    opacity: 0;
+    visibility: hidden;
+
+    margin-left: -20%;
+    padding: 20px;
+    padding-top: 70px;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+
+    /* SAME combined transitions */
+    transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease,
+        margin-left 0.75s ease-in-out,
+        width 0.75s ease-in-out,
+        backdrop-filter 0.4s ease; /* <-- add this */
+}
+
+#sideMenu li a {
+    list-style: none;
+    font-size: 1.5rem;
+    color: white;
+}
+
+#sideMenu.visible {
+    opacity: 1;
+    visibility: visible;
+
+    backdrop-filter: blur(100px);
+    -webkit-backdrop-filter: blur(100px);
+
+    margin-left: 0;
+
+    /* SAME combined transitions */
+    transition:
+        opacity 0.4s ease,
+        visibility 0.4s ease,
+        margin-left 0.75s ease-in-out,
+        width 0.75s ease-in-out,
+        backdrop-filter 0.4s ease; /* <-- add this */
+}
+
+.blog-container, .project-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    row-gap: 50px;
+}
+.blog-row.left, .project-row.left {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.blog-row.right, .project-row.right {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+}
+
+.blog-row, .project-row {
+    opacity: 0;
+    transform: translateX(-25vw);
+    transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+}
+
+.blog-row img, .project-row img {
+    border-radius: 20px;
+    border: 2px solid #37c8d3;
+}
+
+.blog-row.visible, .project-row.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.blog-row.right, .project-row.right {
+    opacity: 0;
+    transform: translateX(25vw);
+    transition: opacity 0.7s ease-in-out, transform 0.7s ease-in-out;
+}
+
+.blog-row.right.visible, .project-row.right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.blog-content, .project-content {
+    width: 40%;
+    text-align: left;
+}
+
+.blog-titleRow, .project-titleRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.blog-content .blog-title, .project-content .project-title {
+    display: flex;
+    flex-direction: row;
+    gap: 0.25em;
+    font-size: 40px;
+    text-decoration: none;
+    color: white;
+}
+
+
+
+
+/* MAIN INLINE CSS */
+.content-link {
+    color: white;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.underline {
+    text-decoration: underline;
+}

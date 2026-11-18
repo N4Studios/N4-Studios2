@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>N4-Studios | Clipboard Copy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      /* background: #f4f6f8; */
+      color: white;
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      background-color: black;
+      margin: 0px;
+    }
+    #background {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      filter: blur(30px);
+      background-image: url('https://yt3.googleusercontent.com/SwjJZkp8JPPLKKusztY0kRPW_FZYziccAkAIJrSyZ7rMWQelLn_OTnUlL8VtcAp6euU1o00YxA=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj');
+      background-size: cover;
+    }
+    main {
+      /* background: white; */
+      width: min(90%, 440px);
+      backdrop-filter: blur(10px);
+      padding: 32px;
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.08);
+      text-align: center;
+      border: 2px solid #37c8d3;
+      border-radius: 25px;
+      background-color: #090e1c;
+    }
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 12px 20px;
+      background: #131d36;
+      border: 2px solid #37c8d3;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover { background: #1d305f; }
+    #status { min-height: 24px; margin-top: 18px; }
+    #copyText {
+      text-align: left;
+      overflow-wrap: anywhere;
+      padding: 12px;
+      background: #131d36;
+      border-radius: 8px;
+      font-family: monospace;
+    }
+  </style>
+  <script src="script.js" defer></script>
+  <script src="../script.js"></script>
+  <style rel="stylesheet" src="../style.css"></style>
+</head>
+<body>
+  <div id="background"></div>
+  <main id="content">
+    <h1>Clipboard Copy</h1>
+    <p>The page will attempt to copy the configured text automatically.</p>
+    <small><b>PRESS ANY KEY TO EXIT</b></small>
+    <p id="copyText"></p>
+    <div class="secondary-buttons">
+        <!-- <button id="backButton" type="button" onclick="history.back()">Go Back</button> -->
+        <button id="copyButton" type="button" autofocus>Copy to Clipboard</button>
+        <!-- <button id="closeButton" type="button" onclick="window.close()">*Close Page</button> -->
+    </div>
+    <p id="status" role="status" aria-live="polite">Preparing copy...</p>
+  </main>
+</body>
+</html>
