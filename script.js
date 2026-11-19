@@ -62,64 +62,54 @@ $(window).on('scroll', function toggleRows() {
     });
 });
 
-// Function to dynamically load and format project data from Cloudflare Worker API
-async function getBlogPosts() {
-  try {
-    const response = await fetch("https://n4-studios-projects-api.nielsen101004.workers.dev/");
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+// Async function to fetch projects from Cloudflare Worker API
+async function fetchBlogPosts() {
+    try {
+        const response = await fetch("https://n4-studios-projects-api.nielsen101004.workers.dev/");
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const rawProjects = await response.json();
+
+        // Map database fields to original object property names
+        return rawProjects.map(proj => {
+            const post = {
+                type: proj.type,
+                title: proj.title,
+                link: proj.link,
+                docs: proj.docs || "",
+                date: proj.date,
+                desc: proj.description || "",
+                imageUrl: proj.imageUrl
+            };
+
+            if (proj.disabled !== undefined && proj.disabled !== null) {
+                post.disabled = Boolean(proj.disabled);
+            }
+
+            return post;
+        });
+    } catch (error) {
+        console.error("Failed to load blog posts from Cloudflare:", error);
+        return [];
     }
-    
-    const rawProjects = await response.json();
-
-    // Map database rows to match your exact blogPosts object structure
-    const blogPosts = rawProjects.map(proj => {
-      const post = {
-        type: proj.type,
-        title: proj.title,
-        link: proj.link,
-        docs: proj.docs || "",
-        date: proj.date,
-        desc: proj.description || "",
-        imageUrl: proj.imageUrl
-      };
-
-      // Include 'disabled' boolean key only if present in the database row
-      if (proj.disabled !== undefined && proj.disabled !== null) {
-        post.disabled = Boolean(proj.disabled);
-      }
-
-      return post;
-    });
-
-    return blogPosts;
-  } catch (error) {
-    console.error("Error loading blog posts from Cloudflare D1:", error);
-    return [];
-  }
 }
 
-// Example usage: Initialize your UI rendering once data is loaded
-document.addEventListener("DOMContentLoaded", async () => {
-  const blogPosts = await getBlogPosts();
-  
-  // Call your existing rendering function here
-  // renderBlogPosts(blogPosts);
-});
-
-function populateBlogRows() {
+async function populateBlogRows() {
     let container = $("#blogContainer").empty(); // clear any existing rows first
+    let blogPosts = await fetchBlogPosts();
     let disabledAmount = 0;
+    
     blogPosts.forEach(function (post, index) {
         let isLeft = (index + disabledAmount) % 2 === 0;
         if(!post.disabled) {
             createBlogRow(post.title, post.link, post.docs, post.date, post.desc, post.imageUrl, isLeft).appendTo(container);
         } else {
-            disabledAmount++
+            disabledAmount++;
         }
     });
 }
-
 
 function populateSideMenu(preDir) {
     let sideMenu = $("#sideMenu");
@@ -131,11 +121,11 @@ function populateSideMenu(preDir) {
 
 function populateSubNav(preDir) {
     let subNav = $("#subNav");
-    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Websites/'">WEBSITES</button>`)
-    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Games/'">GAMES</button>`)
-    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Software/'">SOFTWARE</button>`)
-    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Media/'">VIDEOS & PHOTOS</button>`)
-    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Other_Projects/'">OTHER PROJECTS</button>`)
+    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Websites/'">WEBSITES</button>`);
+    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Games/'">GAMES</button>`);
+    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Software/'">SOFTWARE</button>`);
+    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Media/'">VIDEOS & PHOTOS</button>`);
+    subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Other_Projects/'">OTHER PROJECTS</button>`);
 }
 
 // BLOG ROWS
@@ -144,19 +134,21 @@ function createBlogRow(title, link, docs, date, desc, imageUrl, isLeft) {
     let blogImg = $('<img class="blog-blob-img" width="40%" alt="Blog Image">').attr('src', imageUrl);
     let blogContent = $('<div class="blog-content"></div>');
     let blogTitleRow = $('<div class="blog-titleRow"></div>');
+    
+    let blogTitle;
     if(link) {
-        let blogTitle = $(`<a class='blog-title' href='${link}'></a>`).html(title);
+        blogTitle = $(`<a class='blog-title' href='${link}'></a>`).html(title);
     } else {
-        let blogTitle = $(`<p class='blog-title'></p>`).html(title);
+        blogTitle = $(`<p class='blog-title'></p>`).html(title);
     }
-    let blogTitle = $(`<a class='blog-title' href='${link}'></a>`).html(title);
-    let blogLinks = $(`<div class='blog-links'></div>`)
-    if (link) blogLinks.append(`<a href='${link}'><span class='openLink'></span></a>`)
-    if (docs) blogLinks.append(`<a href='${docs}'><span class='openDocs'></span></a>`)
-    let blogText = $(`<p></p>`)
+
+    let blogLinks = $(`<div class='blog-links'></div>`);
+    if (link) blogLinks.append(`<a href='${link}'><span class='openLink'></span></a>`);
+    if (docs) blogLinks.append(`<a href='${docs}'><span class='openDocs'></span></a>`);
+    let blogText = $(`<p></p>`);
     let blogDate = $(`<h3></h3>`).html(date);
     let blogDesc = $(`<p></p>`).html(desc);
-    blogTitleRow.append(blogTitle, blogLinks)
+    blogTitleRow.append(blogTitle, blogLinks);
     blogText.append(blogDate, blogDesc);
     blogContent.append(blogTitleRow, blogText);
     blogRow.append(blogContent, blogImg);
