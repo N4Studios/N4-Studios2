@@ -1,4 +1,4 @@
-// DELAYED
+// DELAYED 2
 
 const projectType = document.title.substring(13);
 
@@ -10,15 +10,14 @@ const projectPosts = {
     Games: []
 };
 
-// Helper function to resolve paths if needed
+// Standalone getPreDir helper function without recursive calls
 function getPreDir() {
-    if (typeof window.getPreDir === "function") return window.getPreDir();
     let url = window.location.pathname;
     let domain = "n4-studios.com";
-    let path = url.substring(url.indexOf(domain) + domain.length);
+    let path = url.indexOf(domain) !== -1 ? url.substring(url.indexOf(domain) + domain.length) : url;
     let subDirAmnt = (path.match(/\//g) || []).length - 1;
     let preDir = "";
-    for(let i = 0; i < subDirAmnt; i++){
+    for (let i = 0; i < subDirAmnt; i++) {
         preDir += "../";
     }
     return preDir;
@@ -29,7 +28,7 @@ function resolvePath(pathStr) {
     return pathStr.replace(/^\$\{getPreDir\(\)\}/, getPreDir());
 }
 
-// Global fallback function for toggleRows if missing on category pages
+// Global fallback function for toggleRows
 window.toggleRows = window.toggleRows || function() {
     let scrollTop = $(window).scrollTop();
     let screenHeight = $(window).height();
@@ -70,10 +69,9 @@ async function fetchProjectsDirectly() {
 async function getProjectPosts() {
     let posts = window.blogPosts;
 
-    // If main script hasn't populated window.blogPosts yet, fetch directly from Cloudflare
     if (!posts || posts.length === 0) {
         posts = await fetchProjectsDirectly();
-        window.blogPosts = posts; // Cache globally
+        window.blogPosts = posts;
     }
 
     for (const post of posts) {
@@ -102,7 +100,6 @@ async function populateProjectRows() {
         }
     });
     
-    // Trigger scroll check after rendering rows
     window.toggleRows();
 }
 
