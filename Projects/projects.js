@@ -1,3 +1,5 @@
+// DELAYED
+
 const projectType = document.title.substring(13);
 
 const projectPosts = {
@@ -8,15 +10,72 @@ const projectPosts = {
     Games: []
 };
 
-async function getProjectPosts() {
-    // If window.blogPosts isn't loaded yet, fetch it now
-    if (!window.blogPosts || window.blogPosts.length === 0) {
-        if (typeof fetchBlogPosts === "function") {
-            await fetchBlogPosts();
+// Helper function to resolve paths if needed
+function getPreDir() {
+    if (typeof window.getPreDir === "function") return window.getPreDir();
+    let url = window.location.pathname;
+    let domain = "n4-studios.com";
+    let path = url.substring(url.indexOf(domain) + domain.length);
+    let subDirAmnt = (path.match(/\//g) || []).length - 1;
+    let preDir = "";
+    for(let i = 0; i < subDirAmnt; i++){
+        preDir += "../";
+    }
+    return preDir;
+}
+
+function resolvePath(pathStr) {
+    if (!pathStr) return "";
+    return pathStr.replace(/^\$\{getPreDir\(\)\}/, getPreDir());
+}
+
+// Global fallback function for toggleRows if missing on category pages
+window.toggleRows = window.toggleRows || function() {
+    let scrollTop = $(window).scrollTop();
+    let screenHeight = $(window).height();
+
+    $('.blog-row, .project-row').each(function() {
+        let elementTop = $(this).offset().top;
+        let elementHeight = $(this).outerHeight();
+
+        if (scrollTop + screenHeight > elementTop + elementHeight * 0.1) {
+            $(this).addClass('visible');
+        } else if (scrollTop + screenHeight < elementTop + elementHeight * 0.1) {
+            $(this).removeClass('visible');
         }
+    });
+};
+
+async function fetchProjectsDirectly() {
+    try {
+        const response = await fetch("https://n4-studios-projects-api.nielsen101004.workers.dev/");
+        if (!response.ok) throw new Error("API response error");
+        const rawProjects = await response.json();
+        return rawProjects.map(proj => ({
+            type: proj.type,
+            title: proj.title,
+            link: resolvePath(proj.link),
+            docs: resolvePath(proj.docs),
+            date: proj.date,
+            desc: proj.description || "",
+            imageUrl: resolvePath(proj.imageUrl),
+            disabled: Boolean(proj.disabled)
+        }));
+    } catch (e) {
+        console.error("Failed to load project posts:", e);
+        return [];
+    }
+}
+
+async function getProjectPosts() {
+    let posts = window.blogPosts;
+
+    // If main script hasn't populated window.blogPosts yet, fetch directly from Cloudflare
+    if (!posts || posts.length === 0) {
+        posts = await fetchProjectsDirectly();
+        window.blogPosts = posts; // Cache globally
     }
 
-    const posts = window.blogPosts || [];
     for (const post of posts) {
         if (post.type === projectType && !post.disabled) {
             if (projectPosts[projectType]) {
@@ -29,7 +88,6 @@ async function getProjectPosts() {
 async function populateProjectRows() {
     let container = $("#projectContainer").empty();
     
-    // Wait for project data to arrive
     await getProjectPosts();
 
     let projectTypePosts = projectPosts[projectType] || [];
@@ -43,6 +101,9 @@ async function populateProjectRows() {
             disabledAmount++;
         }
     });
+    
+    // Trigger scroll check after rendering rows
+    window.toggleRows();
 }
 
 function createProjectRow(title, link, docs, date, desc, imageUrl, isLeft) {
