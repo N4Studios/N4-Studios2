@@ -41,6 +41,7 @@ function toggleSideMenu() {
         });
     }
 }
+
 // 2. Attach the event listener to the window object
 window.addEventListener('resize', handleResize);
 $(window).on('scroll', function toggleRows() {
@@ -62,6 +63,12 @@ $(window).on('scroll', function toggleRows() {
     });
 });
 
+// Helper function to resolve relative paths starting with getPreDir()
+function resolvePath(pathStr) {
+    if (!pathStr) return "";
+    return pathStr.replace(/^\$\{getPreDir\(\)\}/, getPreDir());
+}
+
 // Async function to fetch projects from Cloudflare Worker API
 async function fetchBlogPosts() {
     try {
@@ -77,16 +84,13 @@ async function fetchBlogPosts() {
             const post = {
                 type: proj.type,
                 title: proj.title,
-                link: proj.link,
-                docs: proj.docs || "",
+                link: resolvePath(proj.link),
+                docs: resolvePath(proj.docs),
                 date: proj.date,
                 desc: proj.description || "",
-                imageUrl: proj.imageUrl
+                imageUrl: resolvePath(proj.imageUrl),
+                disabled: Boolean(proj.disabled) // Converts 1/true to true, 0/null/undefined/false to false
             };
-
-            if (proj.disabled !== undefined && proj.disabled !== null) {
-                post.disabled = Boolean(proj.disabled);
-            }
 
             return post;
         });
@@ -103,7 +107,7 @@ async function populateBlogRows() {
     
     blogPosts.forEach(function (post, index) {
         let isLeft = (index + disabledAmount) % 2 === 0;
-        if(!post.disabled) {
+        if (!post.disabled) {
             createBlogRow(post.title, post.link, post.docs, post.date, post.desc, post.imageUrl, isLeft).appendTo(container);
         } else {
             disabledAmount++;
