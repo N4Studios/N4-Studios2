@@ -62,275 +62,50 @@ $(window).on('scroll', function toggleRows() {
     });
 });
 
-const blogPosts = [
-    {
-        type: "Websites",
-        title: "Auto Clipboard", 
-        link: `${getPreDir()}c/`, 
-        docs: ``,
-        date: "November 10, 2026",
-        desc: "Allows a user to open the page and have it automatically copy what the user needs (Given the key). Key is provided in this format (<span class='underline'>/?key</span>) of the URL. Each Key and value is submitted through a google form. (Need the form link? Contact <a class='content-link' href='../../About'>Luke Nielsen</a>)", 
-        imageUrl: "https://n4-studios.com/Assets/blog/ComputerSimulatorThumbnail.png"
-    },
-    {
-        type: "Media",
-        title: "1 Year Mission Update", 
-        link: `${getPreDir()}Assets/Mission/WATAC1Year(360p_SM).mp4`, 
-        docs: ``,
-        date: "March 04, 2025",
-        desc: "1 Year update of my Mission in Tacoma, Washington.", 
-        imageUrl: "https://n4-studios.com/Assets/blog/ComputerSimulatorThumbnail.png"
-    },
-    {
-        type: "Media",
-        title: "6 Month Mission Update", 
-        link: `${getPreDir()}Assets/Mission/WATAC6Months(360p_SM).mp4`, 
-        docs: ``,
-        date: "August 18, 2024",
-        desc: `6 Month update of my Mission in Tacoma, Washington.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/ComputerSimulatorThumbnail.png"
-    },
-    {
-        type: "Websites",
-        title: "Computer Simulator", 
-        link: `${getPreDir()}Projects/ComputerSimulator/`, 
-        docs: `${getPreDir()}Docs/ComputerSimulator/`,
-        date: "November 06, 2023.",
-        desc: "A Computer Simulator created using HTML, Javascript, and CSS. <a href='https://github.com/Hibyehello' class='content-link'>Josh C.</a> helped create it as well.", 
-        imageUrl: "https://n4-studios.com/Assets/blog/ComputerSimulatorThumbnail.png"
-    },
-    {
-        type: "Media",
-        title: "Logo Render", 
-        link: `${getPreDir()}Assets/Blender/logoRenderVideoEevee.mp4`, 
-        docs: ``,
-        date: "November 05, 2023",
-        desc: ``, 
-        imageUrl: "https://n4-studios.com/Assets/blog/logoRender.png"
-    },
-    {
-        type: "Blog",
-        disabled: true,
-        title: "Hawaii Trip", 
-        link: `${getPreDir()}Docs/HawaiiTrip/`, 
-        docs: ``,
-        date: "November 29, 2023",
-        desc: ``, 
-        imageUrl: "https://n4-studios.com/Assets/blog/HawaiiTrip/HawaiiPlane.jpeg"
-    },
-    {
-        type: "Websites",
-        title: "Spectron Industries Website", 
-        link: `https://SpectronIndustries.com`, 
-        docs: `https://github.com/SpectronIndustries/SpectronIndustries`,
-        date: "October 17, 2023",
-        desc: `Started Spectron Industries Website. <i>Spectron Industries Inc</i> was created by <a class='content-link' href='https://spectronindustries.com/AboutUs/#:~:text=Head%20of%20Divisions-,Aaron%20Woodland,-Founder'>Aaron Woodland</a>.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/SpectronIndustries/SpectronIndustriesWebV111623c.png"
-    },
-    {
-        type: "Blog",
-        disabled: true,
-        title: "Nature Walk v2", 
-        link: ``, 
-        docs: ``,
-        date: "October 12, 2023",
-        desc: ``, 
-        imageUrl: "https://n4-studios.com/Assets/blog/NatureWalks/NatureWalkV2.jpg"
-    },
-    {
-        type: "Media",
-        title: "Second Motion Tracking (Blender)", 
-        link: `${getPreDir()}Assets/Blender/portalOnCarpet.mp4`, 
-        docs: `https://drive.google.com/drive/folders/1BkwKmQXyltKCWEJcsTQPFkZ8Lq2Oy1uv?usp=sharing`,
-        date: "October 11, 2023",
-        desc: `Created a motion tracking video using Blender`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/BlenderProgress/BlenderProgressThumbnail2023.png"
-    },
-    {
-        type: "Websites",
-        disabled: true,
-        title: "Cashier Tools (STools)", 
-        link: `https://stools.nielsen1010041.repl.co/`, 
-        docs: ``,
-        date: "October 10, 2023",
-        desc: `I created some tools for a cashier. Using the STools you can find the Food Calculator, Date Experation Finder, Shift Report Calculator.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/BlenderProgress/BlenderProgressThumbnail2023.png"
-    },
-    {
-        type: "Media",
-        title: "First Motion Tracking (Blender)", 
-        link: `${getPreDir()}Assets/Blender/motionTracking1.mp4`, 
-        docs: `https://drive.google.com/drive/folders/1BkwKmQXyltKCWEJcsTQPFkZ8Lq2Oy1uv?usp=sharing`,
-        date: "October 09, 2023",
-        desc: `Created a motion tracking video using Blender`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/BlenderProgress/BlenderProgressThumbnail2023.png"
-    },
-    {
-        type: "Blog",
-        disabled: true,
-        title: "Nature Walk v2", 
-        link: ``, 
-        docs: ``,
-        date: "October 01, 2023",
-        desc: ``, 
-        imageUrl: "https://n4-studios.com/Assets/blog/NatureWalks/NatureWalkV2.jpg"
-    },
-    {
-        type: "Media",
-        title: "Blender Progress Video", 
-        link: `https://www.youtube.com/watch?v=_lrXsQt7Hn8&feature=youtu.be`, 
-        docs: ``,
-        date: "September 25, 2023",
-        desc: `A video showing all of my Blender projects over the years.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/BlenderProgress/BlenderProgressThumbnail2023.png"
-    },
-    {
-        type: "Media",
-        title: "Updated N4-Studios Logo", 
-        link: `${getPreDir()}Assets/N4StudiosLong.png`, 
-        docs: ``,
-        date: "September 20, 2023",
-        desc: ``, 
-        imageUrl: "https://n4-studios.com/Assets/N4StudiosLong.png"
-    },
-    {
-        type: "Media",
-        title: "Car Render", 
-        link: `${getPreDir()}Assets/Blender/carRender.mp4`,
-        docs: ``,
-        date: "September 19, 2023",
-        desc: `BMW driving on road created using Blender.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/ComputerSimulatorThumbnail.png"
-    },
-    {
-        type: "Other Projects",
-        disabled: true,
-        title: "Drive Data Recovery", 
-        link: `${getPreDir()}Docs/DriveRecovery/`, 
-        docs: ``,
-        date: "August 08, 2023",
-        desc: `Recovering data from currupted Windows Vista PC.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/ComputerSimulatorThumbnail.png"
-    },
-    {
-        type: "Other Projects",
-        disabled: true,
-        title: "Ubuntu Server", 
-        link: `${getPreDir()}Docs/UbuntuServer/`, 
-        docs: ``,
-        date: "July 28, 2023",
-        desc: `Using old PC to serve as a Home Media Server.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/ComputerSimulatorThumbnail.png"
-    },
-    {
-        type: "Media",
-        title: "Best of Pack TV", 
-        link: `https://www.youtube.com/watch?v=1oGBa0i3orw&t=185s`, 
-        docs: ``,
-        date: "May 15, 2023",
-        desc: `An outro for Fremont Pack TV for the 2023 Pack TV Recap.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/ComputerSimulatorThumbnail.png"
-    },
-    {
-        type: "Software",
-        title: "Flag Finder", 
-        link: ``, 
-        docs: `https://github.com/N4Studios/Check-files-for-flags`,
-        date: "March 01, 2023",
-        desc: `Flag Finder is a tool that helps players quickly find flags in cybersecurity games, especially Capture the Flag (CTF) challenges. Instead of manually searching through hundreds of files, it scans files to locate flags automatically, making the process faster and easier.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/FlagFinder.png"
-    },
-    {
-        type: "Other Projects",
-        title: "Server Management", 
-        link: `${getPreDir()}Docs/ServerManagement1/`, 
-        docs: ``,
-        date: "January 01, 2023 - May 15, 2023",
-        desc: `Setup 3 servers (1 Ubuntu, 2 Windows Server) for Weber Innovation Center.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/Server.jpg"
-    },
-    {
-        type: "Websites",
-        title: "Project Manager for TSA Competition", 
-        link: ``, 
-        docs: ``,
-        date: "March 15, 2023",
-        desc: `Project Manager for creating a website for the TSA State Competition 2023.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/SpaceTour.png"
-    },
-    {
-        type: "Games",
-        title: "Beginners Start", 
-        link: `${getPreDir()}Games/BeginnersStart/`, 
-        docs: ``,
-        date: "August 09, 2022",
-        desc: `Followed <a class='content-link' href='https://www.youtube.com/@PlugWorld/'>PlugWorld\'s</a> Youtube <a class='content-link' href='https://www.youtube.com/playlist?list=PL6bQeQE-ybqAYoaWz_ZEE2X4wX6PhwCWR'>Tutorial</a> to create a 2d wave shooter game using Godot Engine.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/FlagFinder.png"
-    },
-    {
-        type: "Games",
-        title: "Color Land 5", 
-        link: `${getPreDir()}Games/ColorLand5/`, 
-        docs: ``,
-        date: "May 31, 2022",
-        desc: `Created Color Land 5 as a new version of Color Land 3. This game was created using Godot Engine 3.4.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/FlagFinder.png"
-    },
-    {
-        type: "Websites",
-        title: "Matthews Contracting", 
-        link: `https://github.com/N4Studios/MatthewsContracting`, 
-        docs: ``,
-        date: "Febuary 11, 2022",
-        desc: `Created a contracting website for a class project using PHP, MySQL, Bootstrap, Jquery, HTML, JS, and CSS. (Designed around the facebook page, Matthews Contracting)`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/FlagFinder.png"
-    },
-    {
-        type: "Games",
-        title: "Space Invaders Remake JAVA", 
-        link: ``, 
-        docs: ``,
-        date: "January 09, 2022",
-        desc: `Created a spin off of Space Invaders using Java. Some of the code was created by Lance P. Rhodes.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/FlagFinder.png"
-    },
-    {
-        type: "Games",
-        title: "Color Land 4", 
-        link: `https://scratch.mit.edu/projects/422580632/`, 
-        docs: ``,
-        date: "February 27, 2021",
-        desc: `Created Color Land 4 using Scratch.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/FlagFinder.png"
-    },
-    {
-        type: "Websites",
-        title: "SEMAG Website", 
-        link: `https://n4studios.github.io/SEMAG/`, 
-        docs: `https://github.com/N4Studios/SEMAG`,
-        date: "Febuary 17, 2021",
-        desc: `Created a website that is a hub for games that you can play on your browser.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/SemagWebsite.png"
-    },
-    {
-        type: "Games",
-        title: "Color Land 3", 
-        link: `https://scratch.mit.edu/projects/284392803/`, 
-        docs: ``,
-        date: "May 09, 2019",
-        desc: `Helped create Color land 3. <a class='content-link' href='https://scratch.mit.edu/projects/279197888/'>(New Color Land 2 Alpha)</a>`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/ColorLand3.png"
-    },
-    {
-        type: "Games",
-        title: "Moc Pac", 
-        link: `https://studio.code.org/projects/gamelab/JLdzbBfr0IJ_upCM1JpGNjWKq2dgfsBMf8rImhlldQA`, 
-        docs: `https://studio.code.org/projects/gamelab/JLdzbBfr0IJ_upCM1JpGNjWKq2dgfsBMf8rImhlldQA/view`,
-        date: "May 14, 2018",
-        desc: `Placed 1st place in the Quest Academy Coding Competition using code.org to recreate Pac-Man.`, 
-        imageUrl: "https://n4-studios.com/Assets/blog/MocPac.png"
+// Function to dynamically load and format project data from Cloudflare Worker API
+async function getBlogPosts() {
+  try {
+    const response = await fetch("https://n4-studios-projects-api.nielsen101004.workers.dev/");
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-];
+    
+    const rawProjects = await response.json();
+
+    // Map database rows to match your exact blogPosts object structure
+    const blogPosts = rawProjects.map(proj => {
+      const post = {
+        type: proj.type,
+        title: proj.title,
+        link: proj.link,
+        docs: proj.docs || "",
+        date: proj.date,
+        desc: proj.description || "",
+        imageUrl: proj.imageUrl
+      };
+
+      // Include 'disabled' boolean key only if present in the database row
+      if (proj.disabled !== undefined && proj.disabled !== null) {
+        post.disabled = Boolean(proj.disabled);
+      }
+
+      return post;
+    });
+
+    return blogPosts;
+  } catch (error) {
+    console.error("Error loading blog posts from Cloudflare D1:", error);
+    return [];
+  }
+}
+
+// Example usage: Initialize your UI rendering once data is loaded
+document.addEventListener("DOMContentLoaded", async () => {
+  const blogPosts = await getBlogPosts();
+  
+  // Call your existing rendering function here
+  // renderBlogPosts(blogPosts);
+});
 
 function populateBlogRows() {
     let container = $("#blogContainer").empty(); // clear any existing rows first
