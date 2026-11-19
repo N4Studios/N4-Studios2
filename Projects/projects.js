@@ -13,7 +13,7 @@ const projectPosts = {
 // Standalone getPreDir helper function without recursive calls
 function getPreDir() {
     let url = window.location.pathname;
-    let domain = "n4-studios.com";
+    let domain = "n4-studios2.com";
     let path = url.indexOf(domain) !== -1 ? url.substring(url.indexOf(domain) + domain.length) : url;
     let subDirAmnt = (path.match(/\//g) || []).length - 1;
     let preDir = "";

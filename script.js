@@ -1,7 +1,7 @@
 function getPreDir() {
     url = window.location.pathname;
 
-    let domain = "n4-studios.com";
+    let domain = "n4-studios2.com";
     let path = url.substring(url.indexOf(domain) + domain.length);
     
     subDirAmnt = (path.match(/\//g) || []).length - 1;
