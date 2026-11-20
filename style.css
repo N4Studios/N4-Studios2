@@ -139,6 +139,7 @@ body {
 #homeContainer {
     width: 55px;
     height: 55px;
+    margin-top: 2px;
     margin-left: 50px;
     position: fixed;
     display: flex;
