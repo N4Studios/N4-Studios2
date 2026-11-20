@@ -136,6 +136,49 @@ body {
     position: relative;
 }
 
+#homeContainer {
+    width: 55px;
+    height: 55px;
+    margin-left: 50px;
+    position: fixed;
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
+    z-index: 3;
+    /* Apply the blur effect */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px); /* For Safari support */
+
+    /* The magic: background fades out to transparent in a circle */
+        -webkit-mask-image: radial-gradient(
+            circle,
+            black 40%,
+            transparent 80%
+        );
+        mask-image: radial-gradient(
+            circle,
+            black 40%,
+            transparent 80%
+        );
+
+}
+
+#homeBtn {
+    cursor: auto;
+    position: relative;
+    background: none;
+    border: none;
+    width: 100%;
+    height: 100%;
+}
+
+#homeSVG {
+    width: 75%;
+    height: 75%;
+    cursor: pointer;
+    position: relative;
+}
+
 #sideMenu {
     position: fixed;
     width: 20%;
