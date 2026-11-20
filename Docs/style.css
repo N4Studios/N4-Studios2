@@ -1,0 +1,88 @@
+:root {
+  --doc-padding: 15%;
+}
+
+.doc-container {
+    width: 100%;
+    padding-inline: var(--doc-padding);
+    padding-top: calc(var(--doc-padding) / 4);
+}
+
+.doc-container-inner {
+    width: calc(100% - (var(--doc-padding) * 2));
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.doc-card {
+    width: 100%;
+    padding: 15px;
+    padding-block: 25px;
+    border-radius: 10px;
+    border: 2px solid #37c8d3;
+    background-color: #0f1524;
+}
+
+.doc-split {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.split-elm {
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    padding-inline: 10px;
+}
+
+.doc-title {
+    width: 100%;
+    justify-content: center;
+    font-size: 4rem;
+    text-align: center;
+}
+
+.split-elm p {
+    text-align: justify;
+    margin-left: -10px;
+}
+
+.split-elm img{
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid #37c8d3;
+    margin-top: 15px
+}
+
+.doc-split h1,.doc-split h2,.doc-split h3,.doc-split h4,.doc-split h5,.doc-split h6 {
+    text-align: left;
+    margin-left: -10px;
+}
+
+.doc-full h1,.doc-full h2,.doc-full h3,.doc-full h4,.doc-full h5,.doc-full h6 {
+    text-align: left;
+}
+
+.doc-card .h-center {
+    text-align: center;
+}
+
+.doc-full {
+    padding-inline: 25px;
+}
+
+.doc-full p {
+    text-align: justify;
+    width: 100%;
+}
+
+.doc-card hr {
+    height:0;
+    border: 0;
+    opacity: 30%;
+    border-top: 1px solid #fff;
+    border-style: inset;
+}

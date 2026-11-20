@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N4-Studios | Docs</title>
+    <!-- Load jQuery from the official Google CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../../script.js" defer></script>
+    <script src="../projects.js" defer></script>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body onload="handleResize(); toggleRows();">
+    <img src="https://yt3.googleusercontent.com/SwjJZkp8JPPLKKusztY0kRPW_FZYziccAkAIJrSyZ7rMWQelLn_OTnUlL8VtcAp6euU1o00YxA=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj" id="head">
+    
+
+    <div id="hamburgerContainer">
+        <button id="hamburgerBtn" onclick="toggleSideMenu()">
+                <svg id="hamburgerSVG" viewBox="0 0 24 24" stroke="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <rect x="3" y="5" width="18" height="2" rx="1" />
+                <rect x="3" y="11" width="18" height="2" rx="1" />
+                <rect x="3" y="17" width="18" height="2" rx="1" />
+            </svg>
+        </button>
+    </div>
+
+    <div id="sideMenu" onload="populateSideMenu('../../')">
+    </div>
+    
+    <div id="content">
+        <div id="box">
+            <div id="subNav" class="subNav"></div>
+            <br><br>
+            <div class="doc-container" id="docContainer">
+                <div class="doc-container-inner">
+                    <div class="doc-intro doc-card">
+                        <h1 class="doc-title">BEST OF PACK TV</h1>
+                    </div>
+                    <div class="doc-card">
+                        <div class="doc-full">
+                            <!-- <h1 class="h-center">WORK LOGS</h1> -->
+                            <div class="doc-split">
+                                <div class="split-elm">
+                                    <h3>November 26, 2023</h3>
+                                    <p>lorem ipsum dolor sit amet consectetur adipiscing elit id voluptas assumenda irure et esse laborum est voluptas nostrud consequatur soluta minus eum accusamus in elit officia officia est aliqua omnis reprehenderit autem aut laborum ea laborum libero qui quod sunt do quod odio et elit quod blanditiis qui possimus harum similique esse fugiat occaecat quos aut exercitation culpa accusamus et quis tempore et ducimus illum officia et eos assumenda nisi laboris sint odio facilis voluptatum enim excepturi proident reprehenderit minus eos est cillum consequat culpa non ipsum in culpa ea iusto enim nisi dolores et culpa laborum consectetur cumque eu dolor est idcorrupti in cum ad id id corrupti magna eum nam enim id praesentium deleniti voluptas et et</p>
+                                </div>
+                                <div class="split-elm">
+                                    <img src="https://n4-studios.com/Assets/blog/BestOfPackTV/BOPTV-05-15-23.png">
+                                </div>
+                            </div>
+                            <h3>November 26, 2023</h3>
+                            <p>lorem ipsum dolor sit amet consectetur adipiscing elit id voluptas assumenda irure et esse laborum est voluptas nostrud consequatur soluta minus eum accusamus in elit officia officia est aliqua omnis reprehenderit autem aut laborum ea laborum libero qui quod sunt do quod odio et elit quod blanditiis qui possimus harum similique esse fugiat occaecat quos aut exercitation culpa accusamus et quis tempore et ducimus illum officia et eos assumenda nisi laboris sint odio facilis voluptatum enim excepturi proident reprehenderit minus eos est cillum consequat culpa non ipsum in culpa ea iusto enim nisi dolores et culpa laborum consectetur cumque eu dolor est id sunt nobis culpa sunt minim laborum quidem accusamus assumenda rerum do quas mollit nulla esse sunt nisi harum est tempore et nulla aliquip imperdiet est deserunt mollitia officia commodo in eu cum distinctio facilis ipsum ut reprehenderit nam mollit magna quo laborum animi tempor deserunt lorem provident sunt excepturi cum ullamco in laborum in deserunt incididunt exercitation sint possimus ducimus repellendus est velit nobis pariatur excepturi mollitia in id lorem facilis ut reprehenderit vero est dolore vel in qui animi occaecat amet in pariatur illum optio molestias imperdiet maxime dolorum deserunt mollit animi dolores odio corrupti in cum ad id id corrupti magna eum nam enim id praesentium deleniti voluptas et et</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="project-container" id="projectContainer" width="100%"></div> -->
+        </div>
+    </div>
+</body>
+</html>
