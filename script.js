@@ -138,6 +138,10 @@ function populateSubNav(preDir) {
     subNav.append(`<button class="subNavBtn" onclick="window.location.href='${preDir}Projects/Other_Projects/'">OTHER PROJECTS</button>`);
 }
 
+function goHome() {
+    window.location.href = `${getpreDir()}`;
+}
+
 function createBlogRow(title, link, docs, date, desc, imageUrl, isLeft) {
     let blogRow = $('<div class="blog-row visible ' + (isLeft ? 'left' : 'right') + '"></div>');
     let blogImg = $('<img class="blog-blob-img" width="40%" alt="Blog Image">').attr('src', imageUrl);
